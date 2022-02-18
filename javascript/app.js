@@ -120,14 +120,20 @@ const app = Vue.createApp({
     createOrder() {
       const url = `${apiUrl}/api/${apiPath}/order`;
       const order = this.form;
-      axios.post(url, { data: order }).then((response) => {
-        alert(response.data.message);
-        this.$refs.form.resetForm();
-        this.getCart();
-      }).catch((err) => {
-        alert(err.data.message);
-      });
+      axios.post(url, { data: order })
+        .then((response) => {
+          alert(response.data.message);
+          this.$refs.form.resetForm();
+          this.getCart();
+        }).catch((err) => {
+          console.dir(err);
+          alert(err.data.message);
+        });
     },
+    isPhone(value) {
+      const phoneNumber = /^(09)[0-9]{8}$/
+      return phoneNumber.test(value) ? true : '需要正確的電話號碼'
+    }
 
   },
   mounted() {
