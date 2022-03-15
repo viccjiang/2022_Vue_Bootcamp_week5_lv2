@@ -156,6 +156,7 @@ app.component('product-modal', {
   },
   watch: {
     id() {
+      console.log(this.id);
       this.getProduct();
     },
   },
@@ -175,7 +176,7 @@ app.component('product-modal', {
         });
     },
     addToCart() {
-      this.$emit('add-cart', this.product.id, this.qty)
+      this.$emit('add-cart', this.product.id, this.qty);
     },
 
   },
